@@ -1,0 +1,15 @@
+{
+    "name": "App",
+    "alias": "app",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "AppWatcher\\App\\Providers\\AppServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+    ],
+    "requires": []
+}
