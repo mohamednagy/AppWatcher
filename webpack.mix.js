@@ -1,4 +1,5 @@
 let mix = require('laravel-mix');
+let fs = require('fs');
 
 /*
  |--------------------------------------------------------------------------
@@ -10,6 +11,17 @@ let mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
-
-mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+let namespace = __dirname+'/AppWatcher';
+let files = fs.readdirSync(namespace);
+files.forEach(function(moduleName) {
+      //compiling js files
+      if (fs.existsSync(namespace + '/'+ moduleName +'/resources/assets/js/app.js')) {
+        mix.js(namespace + '/' + moduleName+ '/resources/assets/js/app.js', 'public/js/' + moduleName + '-module.js');
+      }
+      // compiling scss files
+      if (fs.existsSync(namespace + '/'+ moduleName + '/resources/assets/scss/app.scss')) {
+         mix.sass(namespace + '/'+ moduleName + '/resources/assets/scss/app.scss', 'public/css/' + moduleName + '-module.css');
+      }
+});
+// mix.js('resources/assets/js/app.js', 'public/js')
+//    .sass('resources/assets/sass/app.scss', 'public/css');

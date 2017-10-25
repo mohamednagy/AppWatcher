@@ -108,19 +108,20 @@ return [
     */
 
     'menu' => [
-        'MAIN NAVIGATION',
+        'Exceptions',
         [
-            'text' => 'Blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'text' => 'Critical',
+            'url'  => '{app}/exceptions/critical',
         ],
         [
-            'text'        => 'Pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'file',
-            'label'       => 4,
-            'label_color' => 'success',
+            'text' => 'High',
+            'url'  => '{app}/exceptions/high',
         ],
+        [
+            'text' => 'low',
+            'url'  => '{app}/exceptions/low',
+        ]
+        ,
         'ACCOUNT SETTINGS',
         [
             'text' => 'Profile',
