@@ -1,0 +1,15 @@
+{
+    "name": "app-watcher/core",
+    "description": "",
+    "authors": [
+        {
+            "name": "App Watcher",
+            "email": "mohamed.n.haleem@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "AppWatcher\\Core\\": ""
+        }
+    }
+}
