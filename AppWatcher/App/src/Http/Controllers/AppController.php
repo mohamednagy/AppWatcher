@@ -2,12 +2,24 @@
 
 namespace AppWatcher\App\Http\Controllers;
 
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use AppWatcher\App\Repositories\AppRepository;
+use AppWatcher\App\Http\Requests\CreateAppRequest;
 
 class AppController extends Controller
 {
+    /**
+     * @var AppWatcher\App\Repositories\AppRepository
+     */
+    private $app;
+
+    public function __construct(AppRepository $app)
+    {
+        $this->app = $app;
+    }
     /**
      * Display a listing of the resource.
      * @return Response
@@ -31,8 +43,11 @@ class AppController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(CreateAppRequest $request)
     {
+        $app = $this->app->create($request->all());
+        Auth::user()->apps()->attach($app->id, ['role' => 'admin']);
+        return redirect('apps')->withSuccess('App: '.$app->name.' has been created successfully !');
     }
 
     /**

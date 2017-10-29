@@ -1,3 +1,7 @@
 {
-    "/js/App-module.js": "/js/App-module.js"
+    "/js/app.js": "/js/app.js",
+    "/js/Core-module.js": "/js/Core-module.js",
+    "/js/App-module.js": "/js/App-module.js",
+    "/css/Core-module.css": "/css/Core-module.css",
+    "/css/app.css": "/css/app.css"
 }

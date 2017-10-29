@@ -26,4 +26,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function apps(){
+        return $this->belongsToMany(\AppWatcher\App\Models\App::class);
+    }
+    
 }

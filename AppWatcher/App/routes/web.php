@@ -6,6 +6,9 @@ Route::group(
       'prefix' => 'apps', 'namespace' => 'AppWatcher\App\Http\Controllers'
     ],
     function () {
-        Route::get('/', 'AppController@index');
+        Route::resource('/', 'AppController');
+        Route::group(['prefix' => '{app_name}'], function(){
+            Route::resource('dashboard', 'LogController');
+        });
     }
 );

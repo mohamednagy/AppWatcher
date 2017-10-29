@@ -60,25 +60,39 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 12);
 /******/ })
 /************************************************************************/
 /******/ ([
-/* 0 */
+/* 0 */,
+/* 1 */,
+/* 2 */,
+/* 3 */,
+/* 4 */,
+/* 5 */,
+/* 6 */,
+/* 7 */,
+/* 8 */,
+/* 9 */,
+/* 10 */,
+/* 11 */,
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(1);
+__webpack_require__(13);
+__webpack_require__(16);
+module.exports = __webpack_require__(17);
 
 
 /***/ }),
-/* 1 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(2);
-__webpack_require__(3);
+__webpack_require__(14);
+__webpack_require__(15);
 
 /***/ }),
-/* 2 */
+/* 14 */
 /***/ (function(module, exports) {
 
 (function ($) {
@@ -86,40 +100,52 @@ __webpack_require__(3);
     $.fn.hidder = function (options) {
         var settings = $.extend({}, options);
 
-        var _this = $(this);
+        $(this).addClass('hidder-traget');
         var targetStyle = { 'width': '90%', 'float': 'left' };
         var btnStyle = { 'float': 'right' };
         $(this).wrap('<div class="hidder-container" style="width:100%; display:inline-block"></div>');
         $(this).css(targetStyle);
-        $(this).after('<span class="hidden-traget"></span>');
-        $(this).parent().find('.hidden-traget').css(targetStyle);
+        $(this).after('<span class="mask"></span>');
+        $(this).parent().find('.mask').css(targetStyle);
         $(this).after('<button class="btn btn-sm btn-primary hidder-action" style="margin-top:-7px"><i class="fa fa-eye"></i></button>');
         var text = $(this).html();
         for (var i = 0; i < text.length; i++) {
-            $('.hidder-container .hidden-traget').append('<i class="fa fa-circle" style="font-size:5pt; margin:0 1px 0 0;"></i>');
+            $(this).closest('.hidder-container').find('.mask').append('<i class="fa fa-circle" style="font-size:5pt; margin:0 1px 0 0;"></i>');
         }
         $(this).hide();
-        $('.hidder-container .hidden-traget');
 
-        $('.hidder-container button').bind('click', function () {
+        $(this).parent().find('button').click(function (event) {
+            _this = $(this).parent().find('.hidder-traget');
             if ($(_this).is(":visible")) {
                 $(_this).hide();
-                $('.hidder-container .hidden-traget').show();
+                $(_this).parent().find('.mask').show();
             } else {
                 $(_this).show();
-                $('.hidder-container .hidden-traget').hide();
+                $(_this).parent().find('.mask').hide();
             }
         });
     };
 })(jQuery);
 
 /***/ }),
-/* 3 */
+/* 15 */
 /***/ (function(module, exports) {
 
 $(document).ready(function () {
     $('.hidder').hidder();
 });
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

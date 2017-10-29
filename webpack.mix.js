@@ -23,5 +23,6 @@ files.forEach(function(moduleName) {
          mix.sass(namespace + '/'+ moduleName + '/resources/assets/scss/app.scss', 'public/css/' + moduleName + '-module.css');
       }
 });
-// mix.js('resources/assets/js/app.js', 'public/js')
-//    .sass('resources/assets/sass/app.scss', 'public/css');
+
+mix.js('resources/assets/js/app.js', 'public/js')
+   .sass('resources/assets/sass/app.scss', 'public/css');
