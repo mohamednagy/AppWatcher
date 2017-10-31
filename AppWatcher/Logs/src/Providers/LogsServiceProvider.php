@@ -21,11 +21,7 @@ class LogsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->registerTranslations();
-        $this->registerConfig();
-        $this->registerViews();
-        $this->registerFactories();
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+        //
     }
 
     /**
@@ -38,67 +34,6 @@ class LogsServiceProvider extends ServiceProvider
         //
     }
 
-    /**
-     * Register config.
-     *
-     * @return void
-     */
-    protected function registerConfig()
-    {
-        $this->publishes([
-            __DIR__.'/../config/config.php' => config_path('logs.php'),
-        ], 'config');
-        $this->mergeConfigFrom(
-            __DIR__.'/../config/config.php', 'logs'
-        );
-    }
-
-    /**
-     * Register views.
-     *
-     * @return void
-     */
-    public function registerViews()
-    {
-        $viewPath = resource_path('views/modules/logs');
-
-        $sourcePath = __DIR__.'/../resources/views';
-
-        $this->publishes([
-            $sourcePath => $viewPath
-        ]);
-
-        $this->loadViewsFrom(array_merge(array_map(function ($path) {
-            return $path . '/modules/logs';
-        }, \Config::get('view.paths')), [$sourcePath]), 'logs');
-    }
-
-    /**
-     * Register translations.
-     *
-     * @return void
-     */
-    public function registerTranslations()
-    {
-        $langPath = resource_path('lang/modules/logs');
-
-        if (is_dir($langPath)) {
-            $this->loadTranslationsFrom($langPath, 'logs');
-        } else {
-            $this->loadTranslationsFrom(__DIR__ .'/../resources/lang', 'logs');
-        }
-    }
-
-    /**
-     * Register an additional directory of factories.
-     * @source https://github.com/sebastiaanluca/laravel-resource-flow/blob/develop/src/Modules/ModuleServiceProvider.php#L66
-     */
-    public function registerFactories()
-    {
-        if (! app()->environment('production')) {
-            app(Factory::class)->load(__DIR__ . '/../database/factories');
-        }
-    }
 
     /**
      * Get the services provided by the provider.
