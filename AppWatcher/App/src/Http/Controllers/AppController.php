@@ -84,4 +84,9 @@ class AppController extends Controller
     public function destroy()
     {
     }
+
+
+    public function dashboard(Request $request){
+        return view('app::dashboard');
+    }
 }

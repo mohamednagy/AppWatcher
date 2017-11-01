@@ -30,23 +30,23 @@ class AppServiceProvider extends ServiceProvider
     {
         $events->listen(BuildingMenu::class, function (BuildingMenu $event) {
             $request = resolve(Request::class);
-            if ($request->route('app_name')) {
+            if ($request->route('app_key')) {
                 $event->menu->add('LOGS');
                 $event->menu->add([
                     'text' => 'Errors',
-                    'url' => $request->route('app_name').'/logs?type=errors',
+                    'url' => $request->route('app_key').'/logs?type=errors',
                     'icon' => 'info',
                     'icon_color' => 'danger',
                 ],
                 [
                     'text' => 'Warnings',
-                    'url' => $request->route('app_name').'/logs?type=warnings',
+                    'url' => $request->route('app_key').'/logs?type=warnings',
                     'icon' => 'warning',
                     'icon_color' => 'warning',
                 ],
                 [
                     'text' => 'Info',
-                    'url' => $request->route('app_name').'/logs?type=info',
+                    'url' => $request->route('app_key').'/logs?type=info',
                     'icon' => 'exclamation-circle',
                     'icon_color' => 'info',
                 ]

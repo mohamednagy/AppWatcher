@@ -14,4 +14,12 @@ class App extends Model
     public function users(){
         return $this->belongsToMany(\AppWatcher\User\Models\User::class);
     }
+
+    /**
+     * app has many logs
+     */
+    public function logs(){
+        return $this->hasMany(\AppWatcher\Logs\Models\Log::class);
+    }
+
 }

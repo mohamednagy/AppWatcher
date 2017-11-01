@@ -12,6 +12,6 @@ class EloquentAppRepository extends EloquentBaseRepository implements AppReposit
     public function  create($data){
         $data['app_key'] = uniqueString();
         $data['app_secret'] = uniqueString();
-        return parent::create($data);
+        return $this->model->create($data);
     }
 }

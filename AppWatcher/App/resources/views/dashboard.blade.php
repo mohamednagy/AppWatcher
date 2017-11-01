@@ -3,7 +3,7 @@
 @section('content_header')
 <h1>
     Dashboard
-    <a href="{{url(Request::route('app_name').'/settings')}}" class="btn btn-primary pull-right"><i class="fa fa-cog"></i></a>
+    <a href="{{url(Request::route('app_key').'/settings')}}" class="btn btn-primary pull-right"><i class="fa fa-cog"></i></a>
 </h1>
 @stop
 

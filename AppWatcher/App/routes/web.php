@@ -7,8 +7,8 @@ Route::group(
     ],
     function () {
         Route::resource('/', 'AppController');
-        Route::group(['prefix' => '{app_name}'], function(){
-            Route::resource('dashboard', 'LogController');
+        Route::group(['prefix' => '{app_key}'], function(){
+            Route::get('dashboard', 'AppController@dashboard');
         });
     }
 );

@@ -15,7 +15,7 @@ class AppChecker
      */
     public function handle($request, Closure $next)
     {
-        if (! $request->route('app_name') && ! $request->is('apps')) {
+        if (! $request->route('app_key') && ! $request->is('apps')) {
             return redirect('apps');
         }
         return $next($request);
