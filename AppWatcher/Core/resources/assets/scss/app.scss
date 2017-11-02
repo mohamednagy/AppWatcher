@@ -1,6 +1,18 @@
-$red: #f00;
+$error-color: #dd4b39;
+$warning-color: #f39c12;
+$info-color: #00c0ef;
 
 .required {
-  color: $red;
+  color: $error-color;
   vertical-align: super;
+}
+
+.bg-info{
+    background: $info-color !important;
+}
+.bg-warning{
+    background: $warning-color !important;
+}
+.bg-error{
+    background: $error-color !important;
 }

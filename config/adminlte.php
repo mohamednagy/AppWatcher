@@ -148,7 +148,6 @@ return [
     */
 
     'plugins' => [
-        'datatables' => true,
         'select2'    => true,
     ],
 ];

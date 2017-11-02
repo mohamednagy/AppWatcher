@@ -134,8 +134,8 @@
 
 @section('adminlte_js')
     <script src="{{ asset('vendor/adminlte/dist/js/adminlte.min.js') }}"></script>
-    <script src="{{ mix('js/app.js') }}"></script>
     <script src="{{ mix('js/Core-module.js') }}"></script>
     @stack('js')
     @yield('js')
+    <script src="{{ mix('js/app.js') }}"></script>
 @stop

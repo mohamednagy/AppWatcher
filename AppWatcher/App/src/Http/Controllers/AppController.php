@@ -86,7 +86,19 @@ class AppController extends Controller
     }
 
 
-    public function dashboard(Request $request){
-        return view('app::dashboard');
+    public function dashboard(Request $request)
+    {
+        $logRepo = app('AppWatcher\Logs\Repositories\LogRepository');
+        $tagRepo = app('AppWatcher\Logs\Repositories\TagRepository');
+        $counts = $logRepo->groupBy('type')
+                            ->orderBy('type', 'asc')
+                            ->select(\DB::raw('count(id) as count, type'))
+                            ->get();
+        $viewData = [
+            'logs' => $logRepo->all(),
+            'tags' => $tagRepo->all(),
+            'counts' => $counts
+        ];
+        return view('app::dashboard', $viewData);
     }
 }

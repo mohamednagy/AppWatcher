@@ -7,8 +7,6 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
-
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -16,7 +14,11 @@ window.Vue = require('vue');
  */
 
 Vue.component('example', require('./components/Example.vue'));
-
+import Bus from '../../../AppWatcher/Core/resources/assets/js/components/bus';
+window.Bus = Bus;
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data: {
+        Bus: window.Bus
+    }
 });

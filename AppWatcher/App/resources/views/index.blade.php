@@ -90,6 +90,7 @@
   <!-- /.modal-dialog -->
 </div>
 
-@stop @section('js')
+@stop
+@section('js')
 <script src="{{mix('js/App-module.js')}}"></script>
 @stop

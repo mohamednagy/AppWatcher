@@ -157,4 +157,13 @@ abstract class EloquentBaseRepository implements BaseRepository
     {
         return true;
     }
+
+    public function __call($method, $args){
+        ini_set('display_errors', 1);
+        ini_set('display_startup_errors', 1);
+        error_reporting(E_ALL);
+        if(!method_exists($this, $method)){
+            return $this->model->$method(...$args);
+        }
+    }
 }

@@ -16,14 +16,14 @@
       <!-- small box -->
       <div class="small-box bg-red">
         <div class="inner">
-          <h3>250</h3>
+          <h3>{{isset($counts[0]) ? $counts[0]->count : 0}}</h3>
 
           <p>ERRORS</p>
         </div>
         <div class="icon">
           <i class="fa fa-info"></i>
         </div>
-        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        <a href="{{url('logs?type=error')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
 
@@ -31,14 +31,14 @@
       <!-- small box -->
       <div class="small-box bg-yellow">
         <div class="inner">
-          <h3>150</h3>
+          <h3>{{isset($counts[1]) ? $counts[1]->count : 0}}</h3>
 
           <p>Warnings</p>
         </div>
         <div class="icon">
           <i class="fa fa-warning"></i>
         </div>
-        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        <a href="{{url('logs?type=warning')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
 
@@ -46,14 +46,14 @@
       <!-- small box -->
       <div class="small-box bg-aqua">
         <div class="inner">
-          <h3>250</h3>
+          <h3>{{isset($counts[2]) ? $counts[2]->count : 0}}</h3>
 
           <p>Info</p>
         </div>
         <div class="icon">
           <i class="fa fa-exclamation-circle"></i>
         </div>
-        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        <a href="{{url('logs?type=info')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
 </div>
@@ -61,55 +61,7 @@
 
 <div class="col-12">
     <div class="col-md-8">
-      <div class="box">
-        <div class="box-header">
-          <h3 class="box-title"><i class="fa fa-bars"></i> LATEST LOGS</h3>
-
-          <div class="box-tools">
-            <ul class="pagination pagination-sm no-margin pull-right">
-              <li><a href="#">&laquo;</a></li>
-              <li><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">&raquo;</a></li>
-            </ul>
-          </div>
-        </div>
-        <!-- /.box-header -->
-        <div class="box-body no-padding">
-          <table class="table">
-            <tr>
-              <th>Log</th>
-              <th style="width: 150px">Time</th>
-              <th style="width: 40px">Type</th>
-            </tr>
-            <tbody>
-                <tr>
-                  <td>a logged text from your first app</td>
-                  <td>
-                    2017-10-29 10:15:11
-                  </td>
-                  <td><span class="badge bg-red">Error</span></td>
-                </tr>
-                <tr>
-                  <td>a logged text from your first app</td>
-                  <td>
-                    2017-10-29 10:15:11
-                  </td>
-                  <td><span class="badge bg-yellow">Warning</span></td>
-                </tr>
-                <tr>
-                  <td>a logged text from your first app</td>
-                  <td>
-                    2017-10-29 10:15:11
-                  </td>
-                  <td><span class="badge bg-aqua">Info</span></td>
-                </tr>
-            </tbody>
-          </table>
-        </div>
-        <!-- /.box-body -->
-      </div>
+      <logs></logs>
       <!-- /.box -->
     </div>
 
@@ -121,21 +73,11 @@
           </div>
           <!-- /.box-header -->
           <div class="box-body">
-            <a class="badge bg-aqua">
-                <span class="badge bg-white">100</span> Tag1
-            </a>
-
-            <a class="badge bg-aqua">
-                <span class="badge bg-white">100</span> Tag1
-            </a>
-
-            <a class="badge bg-aqua">
-                <span class="badge bg-white">100</span> Tag1
-            </a>
-
-            <a class="badge bg-aqua">
-                <span class="badge bg-white">100</span> Tag1
-            </a>
+            @foreach ($tags as $tag)
+                <a class="badge bg-aqua" v-on:click="Bus.$emit('log-tag-selected', '{{$tag->name}}')">
+                    {{$tag->name}}
+                </a>
+            @endforeach
           </div>
           <!-- /.box-body -->
         </div>
@@ -145,3 +87,7 @@
 
 
 @stop
+
+@push('js')
+    <script src="{{mix('js/Logs-module.js')}}" charset="utf-8"></script>
+@endpush

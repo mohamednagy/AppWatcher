@@ -28,9 +28,14 @@ class LogsController extends Controller
      * Display a listing of the resource.
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('logs::index');
+        if($request->has('tag')){
+            return $this->log->whereHas('tags' , function($query) use ($request){
+                $query->where('name', $request->input('tag'));
+            })->paginate(15);
+        }
+        return $this->log->paginate(15);
     }
 
     /**
