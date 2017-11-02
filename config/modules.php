@@ -24,21 +24,21 @@ return [
 
     'stubs' => [
         'enabled' => false,
-        'path' => base_path() . '/vendor/nwidart/laravel-modules/src/Commands/stubs',
-        'files' => [
-            'routes' => 'routes/web.php',
-            'views/index' => 'resources/views/index.blade.php',
-            'views/master' => 'resources/views/layouts/master.blade.php',
+        'path'    => base_path().'/vendor/nwidart/laravel-modules/src/Commands/stubs',
+        'files'   => [
+            'routes'          => 'routes/web.php',
+            'views/index'     => 'resources/views/index.blade.php',
+            'views/master'    => 'resources/views/layouts/master.blade.php',
             'scaffold/config' => 'config/config.php',
-            'composer' => 'composer.json',
+            'composer'        => 'composer.json',
         ],
         'replacements' => [
-            'routes' => ['LOWER_NAME', 'STUDLY_NAME', 'MODULE_NAMESPACE'],
-            'json' => ['LOWER_NAME', 'STUDLY_NAME', 'MODULE_NAMESPACE'],
-            'views/index' => ['LOWER_NAME'],
-            'views/master' => ['STUDLY_NAME'],
+            'routes'          => ['LOWER_NAME', 'STUDLY_NAME', 'MODULE_NAMESPACE'],
+            'json'            => ['LOWER_NAME', 'STUDLY_NAME', 'MODULE_NAMESPACE'],
+            'views/index'     => ['LOWER_NAME'],
+            'views/master'    => ['STUDLY_NAME'],
             'scaffold/config' => ['STUDLY_NAME'],
-            'composer' => [
+            'composer'        => [
                 'LOWER_NAME',
                 'STUDLY_NAME',
                 'VENDOR',
@@ -89,35 +89,35 @@ return [
         | Se the generate key to false to not generate that folder
         */
         'generator' => [
-            'config' => ['path' => 'config', 'generate' => true],
-            'command' => ['path' => 'console', 'generate' => false],
-            'migration' => ['path' => 'database/migrations', 'generate' => true],
-            'seeder' => ['path' => 'database/seeders', 'generate' => false],
-            'factory' => ['path' => 'database/factories', 'generate' => false],
-            'routes' => ['path' => 'routes', 'generate' => true],
-            'model' => ['path' => 'src/Models', 'generate' => true],
-            'scope' => ['path' => 'src/Models/Scopes', 'generate' => true],
-            'trait' => ['path' => 'src/Models/Traits', 'generate' => true],
-            'presenter' => ['path' => 'src/Models/Presenters', 'generate' => true],
-            'enum' => ['path' => 'src/Models/Enums', 'generate' => true],
-            'resource' => ['path' => 'src/Models/Transformers', 'generate' => true],
-            'controller' => ['path' => 'src/Http/Controllers', 'generate' => true],
-            'facades' => ['path' => 'src/Http/Facades', 'generate' => true],
-            'filter' => ['path' => 'src/Http/Middleware', 'generate' => true],
-            'request' => ['path' => 'src/Http/Requests', 'generate' => true],
-            'provider' => ['path' => 'src/Providers', 'generate' => false],
-            'assets' => ['path' => 'resources/assets', 'generate' => true],
-            'lang' => ['path' => 'resources/lang', 'generate' => true],
-            'views' => ['path' => 'resources/views', 'generate' => true],
-            'test' => ['path' => 'tests', 'generate' => false],
-            'repository' => ['path' => 'src/Repositories', 'generate' => true],
-            'event' => ['path' => 'src/Events', 'generate' => true],
-            'listener' => ['path' => 'src/Listeners', 'generate' => true],
-            'policies' => ['path' => 'src/Policies', 'generate' => false],
-            'rules' => ['path' => 'src/Rules', 'generate' => false],
-            'jobs' => ['path' => 'src/Jobs', 'generate' => false],
-            'emails' => ['path' => 'src/Emails', 'generate' => false],
-            'notifications' => ['path' => 'src/Notifications', 'generate' => true]
+            'config'        => ['path' => 'config', 'generate' => true],
+            'command'       => ['path' => 'console', 'generate' => false],
+            'migration'     => ['path' => 'database/migrations', 'generate' => true],
+            'seeder'        => ['path' => 'database/seeders', 'generate' => false],
+            'factory'       => ['path' => 'database/factories', 'generate' => false],
+            'routes'        => ['path' => 'routes', 'generate' => true],
+            'model'         => ['path' => 'src/Models', 'generate' => true],
+            'scope'         => ['path' => 'src/Models/Scopes', 'generate' => true],
+            'trait'         => ['path' => 'src/Models/Traits', 'generate' => true],
+            'presenter'     => ['path' => 'src/Models/Presenters', 'generate' => true],
+            'enum'          => ['path' => 'src/Models/Enums', 'generate' => true],
+            'resource'      => ['path' => 'src/Models/Transformers', 'generate' => true],
+            'controller'    => ['path' => 'src/Http/Controllers', 'generate' => true],
+            'facades'       => ['path' => 'src/Http/Facades', 'generate' => true],
+            'filter'        => ['path' => 'src/Http/Middleware', 'generate' => true],
+            'request'       => ['path' => 'src/Http/Requests', 'generate' => true],
+            'provider'      => ['path' => 'src/Providers', 'generate' => false],
+            'assets'        => ['path' => 'resources/assets', 'generate' => true],
+            'lang'          => ['path' => 'resources/lang', 'generate' => true],
+            'views'         => ['path' => 'resources/views', 'generate' => true],
+            'test'          => ['path' => 'tests', 'generate' => false],
+            'repository'    => ['path' => 'src/Repositories', 'generate' => true],
+            'event'         => ['path' => 'src/Events', 'generate' => true],
+            'listener'      => ['path' => 'src/Listeners', 'generate' => true],
+            'policies'      => ['path' => 'src/Policies', 'generate' => false],
+            'rules'         => ['path' => 'src/Rules', 'generate' => false],
+            'jobs'          => ['path' => 'src/Jobs', 'generate' => false],
+            'emails'        => ['path' => 'src/Emails', 'generate' => false],
+            'notifications' => ['path' => 'src/Notifications', 'generate' => true],
         ],
     ],
     /*
@@ -132,7 +132,7 @@ return [
 
     'scan' => [
         'enabled' => false,
-        'paths' => [
+        'paths'   => [
             base_path('vendor/*/*'),
         ],
     ],
@@ -148,7 +148,7 @@ return [
     'composer' => [
         'vendor' => 'app-watcher',
         'author' => [
-            'name' => 'App Watcher',
+            'name'  => 'App Watcher',
             'email' => 'mohamed.n.haleem@gmail.com',
         ],
     ],
@@ -161,8 +161,8 @@ return [
     |
     */
     'cache' => [
-        'enabled' => false,
-        'key' => 'laravel-modules',
+        'enabled'  => false,
+        'key'      => 'laravel-modules',
         'lifetime' => 60,
     ],
     /*

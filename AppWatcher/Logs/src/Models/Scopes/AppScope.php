@@ -2,25 +2,25 @@
 
 namespace AppWatcher\Logs\Models\Scopes;
 
-use Illuminate\Database\Eloquent\Scope;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Scope;
 
 class AppScope implements Scope
 {
-
-
     protected $appRepo;
 
-
-    public function __construct(){
+    public function __construct()
+    {
         $this->appRepo = app('AppWatcher\App\Repositories\AppRepository');
     }
+
     /**
      * Apply the scope to a given Eloquent query builder.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder  $builder
-     * @param  \Illuminate\Database\Eloquent\Model  $model
+     * @param \Illuminate\Database\Eloquent\Builder $builder
+     * @param \Illuminate\Database\Eloquent\Model   $model
+     *
      * @return void
      */
     public function apply(Builder $builder, Model $model)
@@ -30,5 +30,3 @@ class AppScope implements Scope
         $builder->where('app_id', $app->id);
     }
 }
-
- ?>

@@ -2,13 +2,12 @@
 
 namespace AppWatcher\Logs\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use AppWatcher\Logs\Models\Scopes\AppScope;
+use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
     protected $fillable = ['name', 'app_id'];
-
 
     /**
      * The "booting" method of the model.

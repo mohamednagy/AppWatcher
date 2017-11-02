@@ -3,7 +3,6 @@
 namespace AppWatcher\Core\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Database\Eloquent\Factory;
 
 class CoreServiceProvider extends ServiceProvider
 {
@@ -21,7 +20,6 @@ class CoreServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
     }
 
     /**

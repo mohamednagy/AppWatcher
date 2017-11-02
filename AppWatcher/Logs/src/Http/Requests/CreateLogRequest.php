@@ -14,8 +14,8 @@ class CreateLogRequest extends FormRequest
     public function rules()
     {
         return [
-            'level' => 'required',
-            'logText' => 'required'
+            'level'   => 'required',
+            'logText' => 'required',
         ];
     }
 

@@ -2,8 +2,8 @@
 
 namespace AppWatcher\User\Models;
 
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -27,8 +27,8 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function apps(){
+    public function apps()
+    {
         return $this->belongsToMany(\AppWatcher\App\Models\App::class);
     }
-    
 }

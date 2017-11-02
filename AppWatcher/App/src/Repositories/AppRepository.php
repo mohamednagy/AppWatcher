@@ -5,8 +5,7 @@ namespace AppWatcher\App\Repositories;
 use AppWatcher\Core\Repositories\BaseRepository;
 
 /**
- * Interface AppRepository
- * @package AppWatcher\App\Repositories
+ * Interface AppRepository.
  */
 interface AppRepository extends BaseRepository
 {

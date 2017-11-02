@@ -2,15 +2,14 @@
 
 namespace AppWatcher\Logs\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use AppWatcher\Logs\Models\Scopes\AppScope;
+use Illuminate\Database\Eloquent\Model;
 
 class Log extends Model
 {
     protected $fillable = ['app_id', 'log', 'type'];
 
     private $logTypes = [0 => 'error', 1 => 'warning', '2' => 'info'];
-
 
     /**
      * The "booting" method of the model.
@@ -25,16 +24,15 @@ class Log extends Model
     }
 
     /**
-     * many to many relation with tags
+     * many to many relation with tags.
      */
-    public function tags(){
+    public function tags()
+    {
         return $this->belongsToMany(\AppWatcher\Logs\Models\Tag::class, 'log_tag');
     }
 
-    /**
-     *
-     */
-    public function getTypeAttribute($value){
+    public function getTypeAttribute($value)
+    {
         return $this->logTypes[$value];
     }
 }

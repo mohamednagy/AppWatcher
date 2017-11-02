@@ -5,8 +5,7 @@ namespace AppWatcher\Logs\Repositories;
 use AppWatcher\Core\Repositories\BaseRepository;
 
 /**
- * Interface LogRepository
- * @package AppWatcher\Logs\Repositories
+ * Interface LogRepository.
  */
 interface TagRepository extends BaseRepository
 {

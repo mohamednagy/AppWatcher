@@ -1,10 +1,12 @@
-<?php namespace AppWatcher\Core\Repositories\Eloquent;
-use Illuminate\Database\Eloquent\Builder;
+<?php
+
+namespace AppWatcher\Core\Repositories\Eloquent;
+
 use AppWatcher\Core\Repositories\BaseRepository;
+use Illuminate\Database\Eloquent\Builder;
+
 /**
- * Class EloquentCoreRepository
- *
- * @package AppWatcher\Core\Repositories\Eloquent
+ * Class EloquentCoreRepository.
  */
 abstract class EloquentBaseRepository implements BaseRepository
 {
@@ -12,6 +14,7 @@ abstract class EloquentBaseRepository implements BaseRepository
      * @var \Illuminate\Database\Eloquent\Model An instance of the Eloquent Model
      */
     protected $model;
+
     /**
      * @param Model $model
      */
@@ -19,8 +22,10 @@ abstract class EloquentBaseRepository implements BaseRepository
     {
         $this->model = $model;
     }
+
     /**
-     * @param  int    $id
+     * @param int $id
+     *
      * @return object
      */
     public function find($id)
@@ -28,8 +33,10 @@ abstract class EloquentBaseRepository implements BaseRepository
         if (method_exists($this->model, 'translations')) {
             return $this->model->with('translations')->find($id);
         }
+
         return $this->model->find($id);
     }
+
     /**
      * @return \Illuminate\Database\Eloquent\Collection
      */
@@ -38,38 +45,48 @@ abstract class EloquentBaseRepository implements BaseRepository
         if (method_exists($this->model, 'translations')) {
             return $this->model->with('translations')->orderBy('created_at', 'DESC')->get();
         }
+
         return $this->model->orderBy('created_at', 'DESC')->get();
     }
+
     /**
-     * @param  mixed  $data
+     * @param mixed $data
+     *
      * @return object
      */
     public function create($data)
     {
         return $this->model->create($data);
     }
+
     /**
      * @param $model
-     * @param  array  $data
+     * @param array $data
+     *
      * @return object
      */
     public function update($model, $data)
     {
         $model->update($data);
+
         return $model;
     }
+
     /**
-     * @param  Model $model
+     * @param Model $model
+     *
      * @return bool
      */
     public function destroy($model)
     {
         return $model->delete();
     }
+
     /**
-     * Return all resources in the given language
+     * Return all resources in the given language.
      *
-     * @param  string                                   $lang
+     * @param string $lang
+     *
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function allTranslatedIn($lang)
@@ -78,10 +95,12 @@ abstract class EloquentBaseRepository implements BaseRepository
             $q->where('locale', "$lang");
         })->with('translations')->orderBy('created_at', 'DESC')->get();
     }
+
     /**
-     * Find a resource by the given slug
+     * Find a resource by the given slug.
      *
-     * @param  string $slug
+     * @param string $slug
+     *
      * @return object
      */
     public function findBySlug($slug)
@@ -91,35 +110,47 @@ abstract class EloquentBaseRepository implements BaseRepository
                 $q->where('slug', $slug);
             })->with('translations')->first();
         }
+
         return $this->model->where('slug', $slug)->first();
     }
+
     /**
-     * Find a resource by an array of attributes
-     * @param  array  $attributes
+     * Find a resource by an array of attributes.
+     *
+     * @param array $attributes
+     *
      * @return object
      */
     public function findByAttributes(array $attributes)
     {
         $query = $this->buildQueryByAttributes($attributes);
+
         return $query->first();
     }
+
     /**
-     * Get resources by an array of attributes
-     * @param array $attributes
+     * Get resources by an array of attributes.
+     *
+     * @param array       $attributes
      * @param null|string $orderBy
-     * @param string $sortOrder
+     * @param string      $sortOrder
+     *
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function getByAttributes(array $attributes, $orderBy = null, $sortOrder = 'asc')
     {
         $query = $this->buildQueryByAttributes($attributes, $orderBy, $sortOrder);
+
         return $query->get();
     }
+
     /**
-     * Build Query to catch resources by an array of attributes and params
-     * @param array $attributes
+     * Build Query to catch resources by an array of attributes and params.
+     *
+     * @param array       $attributes
      * @param null|string $orderBy
-     * @param string $sortOrder
+     * @param string      $sortOrder
+     *
      * @return \Illuminate\Database\Query\Builder object
      */
     private function buildQueryByAttributes(array $attributes, $orderBy = null, $sortOrder = 'asc')
@@ -134,11 +165,15 @@ abstract class EloquentBaseRepository implements BaseRepository
         if (null !== $orderBy) {
             $query->orderBy($orderBy, $sortOrder);
         }
+
         return $query;
     }
+
     /**
-     * Return a collection of elements who's ids match
+     * Return a collection of elements who's ids match.
+     *
      * @param array $ids
+     *
      * @return mixed
      */
     public function findByMany(array $ids)
@@ -147,10 +182,13 @@ abstract class EloquentBaseRepository implements BaseRepository
         if (method_exists($this->model, 'translations')) {
             $query = $query->with('translations');
         }
-        return $query->whereIn("id", $ids)->get();
+
+        return $query->whereIn('id', $ids)->get();
     }
+
     /**
-     * Clear the cache for this Repositories' Entity
+     * Clear the cache for this Repositories' Entity.
+     *
      * @return bool
      */
     public function clearCache()
@@ -158,11 +196,12 @@ abstract class EloquentBaseRepository implements BaseRepository
         return true;
     }
 
-    public function __call($method, $args){
+    public function __call($method, $args)
+    {
         ini_set('display_errors', 1);
         ini_set('display_startup_errors', 1);
         error_reporting(E_ALL);
-        if(!method_exists($this, $method)){
+        if (!method_exists($this, $method)) {
             return $this->model->$method(...$args);
         }
     }
