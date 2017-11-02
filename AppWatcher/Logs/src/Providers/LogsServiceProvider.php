@@ -2,14 +2,13 @@
 
 namespace AppWatcher\Logs\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Database\Eloquent\Factory;
 use AppWatcher\Logs\Models\Log;
 use AppWatcher\Logs\Models\Tag;
+use AppWatcher\Logs\Repositories\Eloquent\EloquentLogRepository;
+use AppWatcher\Logs\Repositories\Eloquent\EloquentTagRepository;
 use AppWatcher\Logs\Repositories\LogRepository;
 use AppWatcher\Logs\Repositories\TagRepository;
-use AppWatcher\Logs\Repositories\Eloquent\EloquentTagRepository;
-use AppWatcher\Logs\Repositories\Eloquent\EloquentLogRepository;
+use Illuminate\Support\ServiceProvider;
 
 class LogsServiceProvider extends ServiceProvider
 {
@@ -35,24 +34,25 @@ class LogsServiceProvider extends ServiceProvider
      *
      * @return void
      */
-     public function register()
-     {
-         $this->registerBindings();
-     }
+    public function register()
+    {
+        $this->registerBindings();
+    }
 
+    public function registerBindings()
+    {
+        $this->app->bind(LogRepository::class, function () {
+            $repository = new EloquentLogRepository(new Log());
 
-     public function registerBindings(){
-         $this->app->bind(LogRepository::class, function () {
-             $repository = new EloquentLogRepository(new Log());
-             return $repository;
-         });
+            return $repository;
+        });
 
-         $this->app->bind(TagRepository::class, function () {
-             $repository = new EloquentTagRepository(new Tag());
-             return $repository;
-         });
-     }
+        $this->app->bind(TagRepository::class, function () {
+            $repository = new EloquentTagRepository(new Tag());
 
+            return $repository;
+        });
+    }
 
     /**
      * Get the services provided by the provider.

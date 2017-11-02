@@ -2,8 +2,8 @@
 
 namespace AppWatcher\User\Providers;
 
-use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Routing\Router;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -19,7 +19,8 @@ class RouteServiceProvider extends ServiceProvider
      *
      * Register any model bindings or pattern based filters.
      *
-     * @param  Router $router
+     * @param Router $router
+     *
      * @return void
      */
     public function before(Router $router)
@@ -35,7 +36,7 @@ class RouteServiceProvider extends ServiceProvider
     public function map(Router $router)
     {
         if (!app()->routesAreCached()) {
-            $routeFiles =   '../../routes/*.php';
+            $routeFiles = '../../routes/*.php';
             foreach (glob($routeFiles) as $filename) {
                 require $filename;
             }

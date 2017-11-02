@@ -3,8 +3,8 @@
 Route::group(
     [
         'middleware' => [AppWatcher\Core\Http\Middleware\ClientAuth::class],
-        'prefix' => 'api/{app_key}/logs',
-        'namespace' => 'AppWatcher\Logs\Http\Controllers',
+        'prefix'     => 'api/{app_key}/logs',
+        'namespace'  => 'AppWatcher\Logs\Http\Controllers',
     ],
     function () {
         Route::get('/', 'LogsController@index');

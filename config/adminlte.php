@@ -112,8 +112,8 @@ return [
         [
             'text' => 'Apps',
             'url'  => 'apps',
-            'icon' => 'cog'
-        ]
+            'icon' => 'cog',
+        ],
     ],
 
     /*
@@ -148,6 +148,6 @@ return [
     */
 
     'plugins' => [
-        'select2'    => true,
+        'select2' => true,
     ],
 ];

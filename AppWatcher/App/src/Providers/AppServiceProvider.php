@@ -2,15 +2,13 @@
 
 namespace AppWatcher\App\Providers;
 
-use Illuminate\Http\Request;
 use AppWatcher\App\Models\App;
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Database\Eloquent\Factory;
-use Illuminate\Contracts\Events\Dispatcher;
 use AppWatcher\App\Repositories\AppRepository;
-use JeroenNoten\LaravelAdminLte\Events\BuildingMenu;
 use AppWatcher\App\Repositories\Eloquent\EloquentAppRepository;
-
+use Illuminate\Contracts\Events\Dispatcher;
+use Illuminate\Http\Request;
+use Illuminate\Support\ServiceProvider;
+use JeroenNoten\LaravelAdminLte\Events\BuildingMenu;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -33,26 +31,26 @@ class AppServiceProvider extends ServiceProvider
             if ($request->route('app_key')) {
                 $event->menu->add('LOGS');
                 $event->menu->add([
-                    'text' => 'Errors',
-                    'url' => $request->route('app_key').'/logs?type=errors',
-                    'icon' => 'info',
+                    'text'       => 'Errors',
+                    'url'        => $request->route('app_key').'/logs?type=errors',
+                    'icon'       => 'info',
                     'icon_color' => 'danger',
                 ],
                 [
-                    'text' => 'Warnings',
-                    'url' => $request->route('app_key').'/logs?type=warnings',
-                    'icon' => 'warning',
+                    'text'       => 'Warnings',
+                    'url'        => $request->route('app_key').'/logs?type=warnings',
+                    'icon'       => 'warning',
                     'icon_color' => 'warning',
                 ],
                 [
-                    'text' => 'Info',
-                    'url' => $request->route('app_key').'/logs?type=info',
-                    'icon' => 'exclamation-circle',
+                    'text'       => 'Info',
+                    'url'        => $request->route('app_key').'/logs?type=info',
+                    'icon'       => 'exclamation-circle',
                     'icon_color' => 'info',
                 ]
                 );
             }
-         });
+        });
     }
 
     /**
@@ -65,10 +63,11 @@ class AppServiceProvider extends ServiceProvider
         $this->registerBindings();
     }
 
-
-    public function registerBindings(){
+    public function registerBindings()
+    {
         $this->app->bind(AppRepository::class, function () {
             $repository = new EloquentAppRepository(new App());
+
             return $repository;
         });
     }

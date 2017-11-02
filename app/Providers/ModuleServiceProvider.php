@@ -3,10 +3,10 @@
 namespace App\Providers;
 
 use Composer\Autoload\ClassLoader;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
-use Nwidart\Modules\Module;
+use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
+use Nwidart\Modules\Module;
 
 class ModuleServiceProvider extends ServiceProvider
 {
@@ -19,8 +19,7 @@ class ModuleServiceProvider extends ServiceProvider
     {
         $modules = $this->app['modules']->enabled();
 
-        foreach ($modules as $module)
-        {
+        foreach ($modules as $module) {
             //$this->registerAutoload($module);
             $this->registerRoutes($module);
             $this->registerConfig($module);
@@ -41,26 +40,27 @@ class ModuleServiceProvider extends ServiceProvider
         //
     }
 
-
     /**
-     * Register module' routes
+     * Register module' routes.
      *
      * @param Module $module
+     *
      * @return void
      */
     protected function registerRoutes(Module $module)
     {
-         foreach(glob($module->getExtraPath('routes').'/*.php') as $routeFile) {
-             if (file_exists($routeFile)) {
-                 $this->loadRoutesFrom($routeFile);
-             }
-         }
+        foreach (glob($module->getExtraPath('routes').'/*.php') as $routeFile) {
+            if (file_exists($routeFile)) {
+                $this->loadRoutesFrom($routeFile);
+            }
+        }
     }
 
     /**
      * Register module' config.
      *
      * @param Module $module
+     *
      * @return void
      */
     protected function registerConfig(Module $module)
@@ -79,6 +79,7 @@ class ModuleServiceProvider extends ServiceProvider
      * Register module' migrations.
      *
      * @param Module $module
+     *
      * @return void
      */
     protected function registerMigrations(Module $module)
@@ -97,6 +98,7 @@ class ModuleServiceProvider extends ServiceProvider
      * Register module' views.
      *
      * @param Module $module
+     *
      * @return void
      */
     public function registerViews(Module $module)
@@ -105,8 +107,8 @@ class ModuleServiceProvider extends ServiceProvider
 
         $viewPath = resource_path('views/modules/'.$module->getLowerName());
 
-        $this->loadViewsFrom(array_merge(array_map(function ($path) use($module){
-            return $path . '/modules/'. $module->getLowerName();
+        $this->loadViewsFrom(array_merge(array_map(function ($path) use ($module) {
+            return $path.'/modules/'.$module->getLowerName();
         }, config('view.paths')), [$sourcePath]), $module->getLowerName());
 
         $this->publishes([
@@ -118,11 +120,12 @@ class ModuleServiceProvider extends ServiceProvider
      * Register module' translations.
      *
      * @param Module $module
+     *
      * @return void
      */
     public function registerTranslations(Module $module)
     {
-        $langPath = resource_path('lang/modules/'. $module->getLowerName());
+        $langPath = resource_path('lang/modules/'.$module->getLowerName());
 
         if (is_dir($langPath)) {
             $this->loadTranslationsFrom($langPath, $module->getLowerName());
@@ -135,16 +138,16 @@ class ModuleServiceProvider extends ServiceProvider
      * Register an additional directory of factories.
      *
      * @param Module $module
+     *
      * @return void
      * @source https://github.com/sebastiaanluca/laravel-resource-flow/blob/develop/src/Modules/ModuleServiceProvider.php#L66
      */
     public function registerFactories(Module $module)
     {
-        if (! app()->environment('production')) {
+        if (!app()->environment('production')) {
             app(Factory::class)->load($module->getExtraPath('database/factories'));
         }
     }
-
 
     /**
      * Registers autoloading for the Module.
@@ -163,15 +166,16 @@ class ModuleServiceProvider extends ServiceProvider
     }
 
     /**
-     * Get name space from slug
+     * Get name space from slug.
      *
      * @param $name
+     *
      * @return string
      */
     protected function getNameSpace($name)
     {
-        list($vendor , $name) = explode('/', $name);
+        list($vendor, $name) = explode('/', $name);
 
-        return Str::studly($vendor) .'\\'.Str::studly($name).'\\';
+        return Str::studly($vendor).'\\'.Str::studly($name).'\\';
     }
 }

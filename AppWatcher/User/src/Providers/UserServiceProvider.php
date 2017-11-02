@@ -3,7 +3,6 @@
 namespace AppWatcher\User\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Database\Eloquent\Factory;
 
 class UserServiceProvider extends ServiceProvider
 {
@@ -21,7 +20,7 @@ class UserServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-       //
+        //
     }
 
     /**
@@ -33,7 +32,6 @@ class UserServiceProvider extends ServiceProvider
     {
         //
     }
-
 
     /**
      * Get the services provided by the provider.
