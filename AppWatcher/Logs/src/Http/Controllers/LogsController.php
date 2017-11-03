@@ -30,13 +30,14 @@ class LogsController extends Controller
     public function index(Request $request)
     {
         if ($request->has('tag')) {
-            $this->log =  $this->log->whereHas('tags', function ($query) use ($request) {
+            $this->log = $this->log->whereHas('tags', function ($query) use ($request) {
                 $query->where('name', $request->input('tag'));
             });
         }
-        if($request->has('type')){
+        if ($request->has('type')) {
             $this->log = $this->log->whereType($request->input('type'));
         }
+
         return $this->log->paginate(15);
     }
 
