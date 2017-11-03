@@ -12,3 +12,5 @@ yarn-error.log
 .env
 /nbproject/private/
 .settings
+.buildpath
+.project
