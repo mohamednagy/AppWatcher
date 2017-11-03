@@ -16,3 +16,21 @@ $info-color: #00c0ef;
 .bg-error{
     background: $error-color !important;
 }
+
+.box-table-filter {
+    padding: 10px 0;
+    border-bottom: 1px solid #d2d6de;
+    display: inline-block;
+    width: 100%;
+    * {
+        font-size: 10pt !important;
+    }
+    .filter-label{
+        float:left !important;
+        margin-top: 4px;
+    }
+    input,select {
+        height: 2.1em;
+    }
+    
+}

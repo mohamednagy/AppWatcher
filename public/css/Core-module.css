@@ -15,3 +15,24 @@
   background: #dd4b39 !important;
 }
 
+.box-table-filter {
+  padding: 10px 0;
+  border-bottom: 1px solid #d2d6de;
+  display: inline-block;
+  width: 100%;
+}
+
+.box-table-filter * {
+  font-size: 10pt !important;
+}
+
+.box-table-filter .filter-label {
+  float: left !important;
+  margin-top: 4px;
+}
+
+.box-table-filter input,
+.box-table-filter select {
+  height: 2.1em;
+}
+

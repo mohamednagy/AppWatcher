@@ -1,3 +1,7 @@
+/* 
+ * control the visibility of your secret data
+ */
+
 (function ( $ ) {
 
     $.fn.hidder = function(options) {
@@ -31,3 +35,4 @@
     };
 
 }( jQuery ));
+

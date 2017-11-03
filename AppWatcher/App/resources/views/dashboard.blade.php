@@ -72,7 +72,7 @@
             <h3 class="box-title"><i class="fa fa-tags"></i> TAGS</h3>
           </div>
           <!-- /.box-header -->
-          <div class="box-body">
+          <div class="box-body tag-container">
             @foreach ($tags as $tag)
                 <a class="badge bg-aqua" v-on:click="Bus.$emit('log-tag-selected', '{{$tag->name}}')">
                     {{$tag->name}}

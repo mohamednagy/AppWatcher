@@ -9,7 +9,18 @@
       </div>
       <!-- /.box-header -->
       <div class="box-body">
-        
+        <div class="col-12 box-table-filter form-inline">
+            <span class="filter-label"><b><i class="fa fa-filter"></i> Filter: </b></span>
+                <div class="col-md-4">
+                    <label class="control-label">Type</label>
+                    <select class="form-control" v-model="selectedLogType" v-on:change="getLogs()">
+                        <option value="">all</option>
+                        <option value="0">Error</option>
+                        <option value="1">Warning</option>
+                        <option value="2">Info</option>
+                    </select>
+                </div>
+            </div>
         <table class="table">
           <tr>
             <th>Log</th>
@@ -44,7 +55,9 @@
                 logs: {},
                 errors: [],
                 Bus: window.Bus,
-                selectedTags: null
+                selectedTags: null,
+                selectedLogType: ''
+                
             }
         },
         created(){
@@ -66,6 +79,9 @@
                 }
                 if(this.selectedTags){
                     url += "&tag="+this.selectedTags;
+                }
+                if(this.selectedLogType.length != 0){
+                    url +='&type='+this.selectedLogType;
                 }
                 axios.get(url)
                 .then(response => {
